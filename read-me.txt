@@ -1,0 +1,91 @@
+LICENCE +
+
+
+Ajouts de :
+
+Code et pratique Taxi ( niveau +++++ )dmv2
+
+Code et pratique poids lourds ( niveau +++ )dmv3
+
+Code et pratique Superlourds ( niveau ++++ )dmv4
+
+Cours de chimie ( crafting en cours de dev continu )dmv5.
+
+Requirements
+
+    esx_license
+
+
+Insérer licenses.sql dans phpmyadmin
+
+
+
+Upload le dossier complet [licences] sur le FTP
+
+
+
+Insérer dans le serveur.cfg
+
+## Permis voiture + moto + camion
+
+ensure esx_dmvschool
+
+## Permis taxi
+
+ensure esx_dmvschool2
+
+## Permis poids loudrs
+
+ensure esx_dmvschool3
+
+##Permis super lourds
+
+ensure esx_dmvschool4
+
+## Licence chimie
+
+ensure esx_dmvschool5
+
+
+Vous devrez modifier JSCARD au niveau du init.JS afin d'ajouter vos nouvelles licences sur le permis 
+
+        if ( type == 'driver' ) {
+          if ( licenseData != null ) {
+          Object.keys(licenseData).forEach(function(key) {
+            var type = licenseData[key].type;
+
+            if ( type == 'drive_bike') {
+              type = 'A Moto';
+            } else if ( type == 'drive_truck' ) {
+              type = 'B+ Camion';
+            } else if ( type == 'drive' ) {
+              type = 'B Voiture';
+            } else if ( type == 'drive_chimie') {
+              type = 'Chimie';
+            } else if ( type == 'drive_superlourds' ) {
+              type = 'C PL';
+            } else if ( type == 'drive_superlourds1' ) {
+              type = 'EC SPL';
+            
+			} else if ( type == 'drive_taxi' ) {
+              type = 'T Taxi';
+            }
+
+            if ( type == 'A Moto' || type == 'B+ Camion' || type == 'B Voiture'  || type == 'Chimie' || type == 'C PL' || type == 'EC SPL' || type == 'T Taxi') {
+              $('#licenses').append('<p style="color: white;">'+ type +'</p>');
+            }
+          });
+        }
+
+          $('#id-card').css('background', 'url(assets/images/license.png)');
+        } else {
+          $('#id-card').css('background', 'url(assets/images/idcard.png)');
+        }
+
+
+
+Bon courage pour les permis, ils sont très facilement modifiable dans les config.lua afin de changer vos points si vous les trouvez trop long ou complexe.
+
+Prochaine maj en cours :
+BUG de pouvoir passer les permis lourds avant le VL 
+Cours de chimie très loin d'être terminé, et sert uniquement au sealtycraft  
